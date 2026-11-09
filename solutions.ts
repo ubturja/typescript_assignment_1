@@ -101,3 +101,97 @@ console.log(pluckValues(users, "role"));
 console.log(pluckValues(users, "id"));
 */
 
+//solution for prob-7
+class Employee
+{
+    protected name : string;
+    private baseSalary : number;
+
+    constructor (name : string, baseSalary : number)
+    {
+        this.name = name;
+        this.baseSalary = baseSalary;
+
+    }
+
+    getDetails() : string
+    {
+        return `Employee: ${this.name}, Base Salary: ${this.baseSalary}`;
+
+    }
+
+    
+}
+
+class Manager extends Employee
+{
+    private department : string;
+    constructor (name : string, baseSalary: number, department: string)
+    {
+        super (name, baseSalary);
+
+        this.department = department;
+
+    }
+  getRoleInfo() : string
+   {
+    return `Manager of ${this.department}: ${this.name}`;
+
+   }
+}
+/*(for testing purposes of problem- 7)
+const manager = new Manager("Alice", 50000, "Engineering");
+console.log(manager.getDetails());
+console.log(manager.getRoleInfo());
+*/
+
+//solution of prob-8
+async function validateAgeAsync (age : number) : Promise<string>
+{
+    return new Promise ((resolve, reject) => 
+    {
+         if (age >= 18)
+        {
+        setTimeout(() => 
+        {
+            resolve("Access Granted");
+
+        } , 1000);
+
+        }
+        else 
+       {
+        reject(new Error("Access Denied: Must be 18 or older"));
+       }
+    });  
+    
+
+}
+
+/*(for testing purposes of problem- 8)
+async function runTests() 
+{
+    // Test Case 1: 
+    try 
+    {
+        const result1 = await validateAgeAsync(20);
+        console.log(result1);
+    } 
+    catch (error) 
+    {
+        console.error(error);
+    }
+
+    // Test Case 2:
+    try 
+    {
+        const result2 = await validateAgeAsync(15);
+        console.log(result2);
+    } 
+    catch (error) 
+    {
+        console.error(error); 
+    }
+}
+runTests();
+*/
